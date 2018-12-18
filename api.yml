@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  swagger:
+    container_name: swagger
+    build: ./
+    ports:
+      - "80:8080"
+      - "443:443"
+    environment:
+      - API_URL=https://api.blowhorn.com/swagger.json
+    volumes:
+      - ./docs/swagger.json:/usr/share/nginx/html/swagger.json
+      - ../fullchain.pem:/fullchain.pem
+      - ../privkey.pem:/privkey.pem
+      - ../ssl-dhparams.pem:/ssl-dhparams.pem
+      - ../options-ssl-nginx.conf:/options-ssl-nginx.conf
